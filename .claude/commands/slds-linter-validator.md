@@ -1,5 +1,7 @@
 # SLDS Linter & Validator
 
+<!-- Source of truth: https://github.com/Vibency/nancys-claude-skills — update there first, then copy here -->
+
 Perform a full Salesforce Lightning Design System (SLDS) lint and validation pass on all LWC components in this project. Work through each check category below, report every finding with file path + line number, and produce a summary at the end.
 
 ---
