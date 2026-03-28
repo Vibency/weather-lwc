@@ -1,0 +1,18 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Salesforce
+.sfdx/
+.sf/
+*.zip
+
+# Jest
+coverage/
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/

@@ -1,0 +1,127 @@
+/* ============================================================
+   SLDS 2 Styling Hooks + Design Tokens — Weather Card
+   All colors via --slds-g-* global tokens (WCAG AA compliant)
+   Component-scoped overrides via --slds-c-weather-card-* hooks
+   ============================================================ */
+
+:host {
+    display: block;
+
+    /* ── Component-level token declarations (SLDS 2 pattern) ── */
+    --slds-c-weather-card-temp-font-size: var(--slds-g-font-size-10, 3.5rem);
+    --slds-c-weather-card-unit-font-size: var(--slds-g-font-size-9, 1.5rem);
+
+    /* Theme accent tokens — warm */
+    --slds-c-weather-warm-accent-border:     var(--slds-g-color-warning-base-50,  #f8c46a);
+    --slds-c-weather-warm-gradient-end:      var(--slds-g-color-warning-base-95,  #fff8ec);
+
+    /* Theme accent tokens — cool */
+    --slds-c-weather-cool-accent-border:     var(--slds-g-color-brand-base-70,    #90caf9);
+    --slds-c-weather-cool-gradient-end:      var(--slds-g-color-brand-base-95,    #eef6ff);
+
+    /* Theme accent tokens — storm/tropical */
+    --slds-c-weather-storm-accent-border:    var(--slds-g-color-success-base-50,  #a5d6a7);
+    --slds-c-weather-storm-gradient-end:     var(--slds-g-color-success-base-95,  #f0faf0);
+
+    /* UV semantic color tokens */
+    --slds-c-uv-low:       var(--slds-g-color-success-base-40,  #2e844a);
+    --slds-c-uv-moderate:  var(--slds-g-color-warning-base-40,  #ca8a04);
+    --slds-c-uv-high:      var(--slds-g-color-error-base-50,    #fe5c4c);
+    --slds-c-uv-very-high: var(--slds-g-color-error-base-30,    #ba0517);
+}
+
+/* ── Card base ── */
+.weather-card {
+    --slds-c-card-color-border:   var(--slds-g-color-border-base-1, #e5e5e5);
+    --slds-c-card-radius-border:  var(--slds-g-radius-border-2,     0.5rem);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    overflow: hidden;
+}
+
+.weather-card:hover {
+    --slds-c-card-shadow: var(--slds-g-shadow-2, 0 8px 24px rgba(21, 137, 238, 0.16));
+    transform: translateY(-2px);
+}
+
+/* ── Warm theme (San Francisco) ── */
+.weather-card_warm {
+    --slds-c-card-color-border: var(--slds-c-weather-warm-accent-border);
+    background: linear-gradient(
+        160deg,
+        var(--slds-g-color-neutral-base-100, #ffffff) 0%,
+        var(--slds-c-weather-warm-gradient-end) 100%
+    );
+}
+
+/* ── Cool theme (Tokyo) ── */
+.weather-card_cool {
+    --slds-c-card-color-border: var(--slds-c-weather-cool-accent-border);
+    background: linear-gradient(
+        160deg,
+        var(--slds-g-color-neutral-base-100, #ffffff) 0%,
+        var(--slds-c-weather-cool-gradient-end) 100%
+    );
+}
+
+/* ── Storm/tropical theme (Mumbai) ── */
+.weather-card_storm {
+    --slds-c-card-color-border: var(--slds-c-weather-storm-accent-border);
+    background: linear-gradient(
+        160deg,
+        var(--slds-g-color-neutral-base-100, #ffffff) 0%,
+        var(--slds-c-weather-storm-gradient-end) 100%
+    );
+}
+
+/* ── Temperature display ── */
+.temp-display {
+    padding: var(--slds-g-spacing-4, 1rem) 0;
+}
+
+.temp-value {
+    font-size: var(--slds-c-weather-card-temp-font-size);
+    font-weight: var(--slds-g-font-weight-7, 700);
+    line-height: 1;
+    color: var(--slds-g-color-neutral-base-10, #181818);
+    letter-spacing: -2px;
+}
+
+.temp-unit {
+    font-size: var(--slds-c-weather-card-unit-font-size);
+    font-weight: var(--slds-g-font-weight-4, 400);
+    color: var(--slds-g-color-neutral-base-50, #747474);
+    vertical-align: super;
+}
+
+/* ── Stat tiles ── */
+.stat-tile {
+    --slds-c-box-color-border:   var(--slds-g-color-border-base-1,    #e5e5e5);
+    --slds-c-box-radius-border:  var(--slds-g-radius-border-2,         0.5rem);
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border: 1px solid var(--slds-g-color-border-base-1, #e5e5e5);
+}
+
+/* ── UV index progress bar colors (semantic status tokens) ── */
+.uv-low       { background-color: var(--slds-c-uv-low); }
+.uv-moderate  { background-color: var(--slds-c-uv-moderate); }
+.uv-high      { background-color: var(--slds-c-uv-high); }
+.uv-very-high { background-color: var(--slds-c-uv-very-high); }
+
+/* ── Condition badge overrides via SLDS badge styling hooks ── */
+:global(.badge-sunny .slds-badge) {
+    --slds-c-badge-color-background: var(--slds-g-color-warning-base-95, #fff3cd);
+    --slds-c-badge-text-color:       var(--slds-g-color-warning-base-20, #7a4f01);
+}
+:global(.badge-rainy .slds-badge) {
+    --slds-c-badge-color-background: var(--slds-g-color-brand-base-95, #cce5ff);
+    --slds-c-badge-text-color:       var(--slds-g-color-brand-base-20, #032d60);
+}
+:global(.badge-cloudy .slds-badge),
+:global(.badge-partly-cloudy .slds-badge) {
+    --slds-c-badge-color-background: var(--slds-g-color-neutral-base-90, #e2e3e5);
+    --slds-c-badge-text-color:       var(--slds-g-color-neutral-base-20, #2e2e2e);
+}
+:global(.badge-stormy .slds-badge) {
+    --slds-c-badge-color-background: var(--slds-g-color-success-base-95, #d1ecf1);
+    --slds-c-badge-text-color:       var(--slds-g-color-success-base-20, #014f40);
+}

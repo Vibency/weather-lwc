@@ -1,0 +1,92 @@
+<template>
+    <lightning-card title="San Francisco" icon-name={headerIcon}>
+
+        <template if:true={isLoading}>
+            <div class="skeleton-wrap">
+                <div class="skeleton skeleton-temp"></div>
+                <div class="skeleton skeleton-condition"></div>
+                <div class="skeleton-divider"></div>
+                <div class="slds-grid slds-gutters_small slds-wrap">
+                    <div class="slds-col slds-size_1-of-2"><div class="skeleton skeleton-stat"></div></div>
+                    <div class="slds-col slds-size_1-of-2"><div class="skeleton skeleton-stat"></div></div>
+                    <div class="slds-col slds-size_1-of-2 slds-m-top_small"><div class="skeleton skeleton-stat"></div></div>
+                    <div class="slds-col slds-size_1-of-2 slds-m-top_small"><div class="skeleton skeleton-stat"></div></div>
+                </div>
+                <div class="skeleton skeleton-bar slds-m-top_medium"></div>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <div class="content-wrap">
+
+                <!-- Temperature -->
+                <div class="anim-1 slds-m-bottom_small">
+                    <p class="temp-value">18°</p>
+                    <p class="slds-text-body_regular slds-text-color_weak">
+                        <lightning-icon icon-name="utility:circle" size="xx-small" alternative-text="Partly Cloudy" class="slds-m-right_xx-small"></lightning-icon>
+                        Partly Cloudy &nbsp;·&nbsp; Feels like <strong>16°C</strong>
+                    </p>
+                </div>
+
+                <hr class="anim-2 slds-m-vertical_small" />
+
+                <!-- Stats grid -->
+                <div class="anim-3 slds-grid slds-gutters_small slds-wrap">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="stat-row">
+                            <lightning-icon icon-name="utility:water" size="xx-small" alternative-text="Humidity"></lightning-icon>
+                            <span class="slds-text-body_small slds-text-color_weak slds-m-left_xx-small">Humidity</span>
+                        </div>
+                        <p class="stat-value">72%</p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="stat-row">
+                            <lightning-icon icon-name="utility:threedots_vertical" size="xx-small" alternative-text="Wind speed"></lightning-icon>
+                            <span class="slds-text-body_small slds-text-color_weak slds-m-left_xx-small">Wind</span>
+                        </div>
+                        <p class="stat-value">24 <span class="stat-unit">km/h</span></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-m-top_small">
+                        <div class="stat-row">
+                            <lightning-icon icon-name="utility:arrowup" size="xx-small" alternative-text="Daily high"></lightning-icon>
+                            <span class="slds-text-body_small slds-text-color_weak slds-m-left_xx-small">High</span>
+                        </div>
+                        <p class="stat-value">21°<span class="stat-unit">C</span></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-m-top_small">
+                        <div class="stat-row">
+                            <lightning-icon icon-name="utility:arrowdown" size="xx-small" alternative-text="Daily low"></lightning-icon>
+                            <span class="slds-text-body_small slds-text-color_weak slds-m-left_xx-small">Low</span>
+                        </div>
+                        <p class="stat-value">13°<span class="stat-unit">C</span></p>
+                    </div>
+
+                </div>
+
+                <!-- UV Index -->
+                <div class="anim-4 slds-m-top_medium">
+                    <div class="slds-grid slds-grid_align-spread slds-m-bottom_xx-small">
+                        <span class="slds-text-body_small slds-text-color_weak">
+                            <lightning-icon icon-name="utility:light_bulb" size="xx-small" alternative-text="UV Index" class="slds-m-right_xx-small"></lightning-icon>
+                            UV Index
+                        </span>
+                        <span class="slds-text-body_small"><strong>4</strong> / 11</span>
+                    </div>
+                    <div class="slds-progress-bar" role="progressbar" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100">
+                        <span class="slds-progress-bar__value uv-bar" style="width: 36%"></span>
+                    </div>
+                </div>
+
+            </div>
+        </template>
+
+        <p slot="footer" class="slds-text-body_small slds-text-color_weak slds-text-align_center">
+            <lightning-icon icon-name={footerIcon} size="xx-small" alternative-text="Local time" class="slds-m-right_xx-small"></lightning-icon>
+            Local time &nbsp;·&nbsp; <strong>{localTime}</strong>
+        </p>
+    </lightning-card>
+</template>
